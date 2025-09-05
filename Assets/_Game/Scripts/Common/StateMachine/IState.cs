@@ -1,6 +1,4 @@
-using Zenject;
-
-namespace _Game.Scripts.Core.StateMachine
+namespace _Game.Scripts.Common.StateMachine
 {
     public interface IUpdatableState : IState
     {

@@ -1,9 +1,9 @@
-using _Game.Scripts.Common;
 using _Game.Scripts.Common.DI;
+using _Game.Scripts.Common.Movement;
 using UnityEngine;
 using Zenject;
 
-namespace _Game.Scripts.Features.Human.Installers
+namespace _Game.Scripts.Features.Entity.Installers
 {
     public class EntityMoveControllersInstaller: SubInstaller
     {

@@ -3,7 +3,7 @@
     "name": "InputScheme",
     "maps": [
         {
-            "name": "ControlScheme",
+            "name": "Player",
             "id": "e04126c2-2dc1-49ee-aeb5-51d3a9eb0992",
             "actions": [
                 {

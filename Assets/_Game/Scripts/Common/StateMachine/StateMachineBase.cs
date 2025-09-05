@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace _Game.Scripts.Core.StateMachine
+namespace _Game.Scripts.Common.StateMachine
 {
     public class StateMachineBase
     {

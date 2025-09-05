@@ -1,11 +1,10 @@
 using System.Collections.Generic;
 using _Game.Scripts.Common;
 using UnityEngine;
-using Zenject;
 
-namespace _Game.Scripts.Features.Human
+namespace _Game.Scripts.Features.Entity
 {
-    public class HumanControllableEntity: IControllableEntityMono
+    public class EntityComponentsController: IControllableEntityMono
     {
         private List<IEnableable> _enableableComponents;
         public override void SetComponents(List<IEnableable> enableableComponents)

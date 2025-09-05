@@ -1,9 +1,9 @@
 using System;
-using _Game.Scripts.Common;
+using _Game.Scripts.Common.Movement;
 using UnityEngine;
 using Zenject;
 
-namespace _Game.Scripts.Features.Human.Controllers
+namespace _Game.Scripts.Features.Entity
 {
     public class EntityAnimatorController: IInitializable, IDisposable
     {

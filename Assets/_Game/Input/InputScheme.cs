@@ -89,7 +89,7 @@ public partial class @InputScheme: IInputActionCollection2, IDisposable
     ""name"": ""InputScheme"",
     ""maps"": [
         {
-            ""name"": ""ControlScheme"",
+            ""name"": ""Player"",
             ""id"": ""e04126c2-2dc1-49ee-aeb5-51d3a9eb0992"",
             ""actions"": [
                 {
@@ -368,16 +368,16 @@ public partial class @InputScheme: IInputActionCollection2, IDisposable
         }
     ]
 }");
-        // ControlScheme
-        m_ControlScheme = asset.FindActionMap("ControlScheme", throwIfNotFound: true);
-        m_ControlScheme_SwitchEntity = m_ControlScheme.FindAction("SwitchEntity", throwIfNotFound: true);
-        m_ControlScheme_Move = m_ControlScheme.FindAction("Move", throwIfNotFound: true);
-        m_ControlScheme_Shot = m_ControlScheme.FindAction("Shot", throwIfNotFound: true);
+        // Player
+        m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
+        m_Player_SwitchEntity = m_Player.FindAction("SwitchEntity", throwIfNotFound: true);
+        m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
+        m_Player_Shot = m_Player.FindAction("Shot", throwIfNotFound: true);
     }
 
     ~@InputScheme()
     {
-        UnityEngine.Debug.Assert(!m_ControlScheme.enabled, "This will cause a leak and performance issues, InputScheme.ControlScheme.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, InputScheme.Player.Disable() has not been called.");
     }
 
     /// <summary>
@@ -450,39 +450,39 @@ public partial class @InputScheme: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // ControlScheme
-    private readonly InputActionMap m_ControlScheme;
-    private List<IControlSchemeActions> m_ControlSchemeActionsCallbackInterfaces = new List<IControlSchemeActions>();
-    private readonly InputAction m_ControlScheme_SwitchEntity;
-    private readonly InputAction m_ControlScheme_Move;
-    private readonly InputAction m_ControlScheme_Shot;
+    // Player
+    private readonly InputActionMap m_Player;
+    private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
+    private readonly InputAction m_Player_SwitchEntity;
+    private readonly InputAction m_Player_Move;
+    private readonly InputAction m_Player_Shot;
     /// <summary>
-    /// Provides access to input actions defined in input action map "ControlScheme".
+    /// Provides access to input actions defined in input action map "Player".
     /// </summary>
-    public struct ControlSchemeActions
+    public struct PlayerActions
     {
         private @InputScheme m_Wrapper;
 
         /// <summary>
         /// Construct a new instance of the input action map wrapper class.
         /// </summary>
-        public ControlSchemeActions(@InputScheme wrapper) { m_Wrapper = wrapper; }
+        public PlayerActions(@InputScheme wrapper) { m_Wrapper = wrapper; }
         /// <summary>
-        /// Provides access to the underlying input action "ControlScheme/SwitchEntity".
+        /// Provides access to the underlying input action "Player/SwitchEntity".
         /// </summary>
-        public InputAction @SwitchEntity => m_Wrapper.m_ControlScheme_SwitchEntity;
+        public InputAction @SwitchEntity => m_Wrapper.m_Player_SwitchEntity;
         /// <summary>
-        /// Provides access to the underlying input action "ControlScheme/Move".
+        /// Provides access to the underlying input action "Player/Move".
         /// </summary>
-        public InputAction @Move => m_Wrapper.m_ControlScheme_Move;
+        public InputAction @Move => m_Wrapper.m_Player_Move;
         /// <summary>
-        /// Provides access to the underlying input action "ControlScheme/Shot".
+        /// Provides access to the underlying input action "Player/Shot".
         /// </summary>
-        public InputAction @Shot => m_Wrapper.m_ControlScheme_Shot;
+        public InputAction @Shot => m_Wrapper.m_Player_Shot;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
-        public InputActionMap Get() { return m_Wrapper.m_ControlScheme; }
+        public InputActionMap Get() { return m_Wrapper.m_Player; }
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
         public void Enable() { Get().Enable(); }
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
@@ -490,9 +490,9 @@ public partial class @InputScheme: IInputActionCollection2, IDisposable
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
         public bool enabled => Get().enabled;
         /// <summary>
-        /// Implicitly converts an <see ref="ControlSchemeActions" /> to an <see ref="InputActionMap" /> instance.
+        /// Implicitly converts an <see ref="PlayerActions" /> to an <see ref="InputActionMap" /> instance.
         /// </summary>
-        public static implicit operator InputActionMap(ControlSchemeActions set) { return set.Get(); }
+        public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
         /// <summary>
         /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
         /// </summary>
@@ -500,11 +500,11 @@ public partial class @InputScheme: IInputActionCollection2, IDisposable
         /// <remarks>
         /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
         /// </remarks>
-        /// <seealso cref="ControlSchemeActions" />
-        public void AddCallbacks(IControlSchemeActions instance)
+        /// <seealso cref="PlayerActions" />
+        public void AddCallbacks(IPlayerActions instance)
         {
-            if (instance == null || m_Wrapper.m_ControlSchemeActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_ControlSchemeActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_PlayerActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlayerActionsCallbackInterfaces.Add(instance);
             @SwitchEntity.started += instance.OnSwitchEntity;
             @SwitchEntity.performed += instance.OnSwitchEntity;
             @SwitchEntity.canceled += instance.OnSwitchEntity;
@@ -522,8 +522,8 @@ public partial class @InputScheme: IInputActionCollection2, IDisposable
         /// <remarks>
         /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
         /// </remarks>
-        /// <seealso cref="ControlSchemeActions" />
-        private void UnregisterCallbacks(IControlSchemeActions instance)
+        /// <seealso cref="PlayerActions" />
+        private void UnregisterCallbacks(IPlayerActions instance)
         {
             @SwitchEntity.started -= instance.OnSwitchEntity;
             @SwitchEntity.performed -= instance.OnSwitchEntity;
@@ -537,12 +537,12 @@ public partial class @InputScheme: IInputActionCollection2, IDisposable
         }
 
         /// <summary>
-        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="ControlSchemeActions.UnregisterCallbacks(IControlSchemeActions)" />.
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="PlayerActions.UnregisterCallbacks(IPlayerActions)" />.
         /// </summary>
-        /// <seealso cref="ControlSchemeActions.UnregisterCallbacks(IControlSchemeActions)" />
-        public void RemoveCallbacks(IControlSchemeActions instance)
+        /// <seealso cref="PlayerActions.UnregisterCallbacks(IPlayerActions)" />
+        public void RemoveCallbacks(IPlayerActions instance)
         {
-            if (m_Wrapper.m_ControlSchemeActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_PlayerActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
@@ -552,21 +552,21 @@ public partial class @InputScheme: IInputActionCollection2, IDisposable
         /// <remarks>
         /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
         /// </remarks>
-        /// <seealso cref="ControlSchemeActions.AddCallbacks(IControlSchemeActions)" />
-        /// <seealso cref="ControlSchemeActions.RemoveCallbacks(IControlSchemeActions)" />
-        /// <seealso cref="ControlSchemeActions.UnregisterCallbacks(IControlSchemeActions)" />
-        public void SetCallbacks(IControlSchemeActions instance)
+        /// <seealso cref="PlayerActions.AddCallbacks(IPlayerActions)" />
+        /// <seealso cref="PlayerActions.RemoveCallbacks(IPlayerActions)" />
+        /// <seealso cref="PlayerActions.UnregisterCallbacks(IPlayerActions)" />
+        public void SetCallbacks(IPlayerActions instance)
         {
-            foreach (var item in m_Wrapper.m_ControlSchemeActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_PlayerActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_ControlSchemeActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_PlayerActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
     /// <summary>
-    /// Provides a new <see cref="ControlSchemeActions" /> instance referencing this action map.
+    /// Provides a new <see cref="PlayerActions" /> instance referencing this action map.
     /// </summary>
-    public ControlSchemeActions @ControlScheme => new ControlSchemeActions(this);
+    public PlayerActions @Player => new PlayerActions(this);
     private int m_KeyboardSchemeIndex = -1;
     /// <summary>
     /// Provides access to the input control scheme.
@@ -594,11 +594,11 @@ public partial class @InputScheme: IInputActionCollection2, IDisposable
         }
     }
     /// <summary>
-    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "ControlScheme" which allows adding and removing callbacks.
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Player" which allows adding and removing callbacks.
     /// </summary>
-    /// <seealso cref="ControlSchemeActions.AddCallbacks(IControlSchemeActions)" />
-    /// <seealso cref="ControlSchemeActions.RemoveCallbacks(IControlSchemeActions)" />
-    public interface IControlSchemeActions
+    /// <seealso cref="PlayerActions.AddCallbacks(IPlayerActions)" />
+    /// <seealso cref="PlayerActions.RemoveCallbacks(IPlayerActions)" />
+    public interface IPlayerActions
     {
         /// <summary>
         /// Method invoked when associated input action "SwitchEntity" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.

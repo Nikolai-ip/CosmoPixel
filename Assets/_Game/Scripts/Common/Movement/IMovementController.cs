@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace _Game.Scripts.Common
+namespace _Game.Scripts.Common.Movement
 {
     public interface IMovementController
     {

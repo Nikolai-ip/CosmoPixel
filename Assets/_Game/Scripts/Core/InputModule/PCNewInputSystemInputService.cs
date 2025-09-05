@@ -16,10 +16,10 @@ namespace _Game.Scripts.Core.InputModule
         public void Initialize()
         {
             _inputScheme.Enable();
-            _inputScheme.ControlScheme.SwitchEntity.performed += OnSwitchEntity;
-            _inputScheme.ControlScheme.Move.performed += OnMove;
-            _inputScheme.ControlScheme.Move.started += OnMove;
-            _inputScheme.ControlScheme.Move.canceled += OnMove;
+            _inputScheme.Player.SwitchEntity.performed += OnSwitchEntity;
+            _inputScheme.Player.Move.performed += OnMove;
+            _inputScheme.Player.Move.started += OnMove;
+            _inputScheme.Player.Move.canceled += OnMove;
         }
         
 

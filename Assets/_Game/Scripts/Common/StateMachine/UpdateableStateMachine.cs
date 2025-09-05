@@ -1,7 +1,7 @@
 using UnityEngine;
 using Zenject;
 
-namespace _Game.Scripts.Core.StateMachine
+namespace _Game.Scripts.Common.StateMachine
 {
     public class UpdateableStateMachine: StateMachineBase, ITickable
     {

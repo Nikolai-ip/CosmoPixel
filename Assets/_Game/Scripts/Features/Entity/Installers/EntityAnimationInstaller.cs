@@ -1,9 +1,8 @@
 using _Game.Scripts.Common.DI;
-using _Game.Scripts.Features.Human.Controllers;
 using UnityEngine;
 using Zenject;
 
-namespace _Game.Scripts.Features.Human.Installers
+namespace _Game.Scripts.Features.Entity.Installers
 {
     public class EntityAnimationInstaller: SubInstaller
     {

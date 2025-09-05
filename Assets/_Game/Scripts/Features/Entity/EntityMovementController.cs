@@ -1,9 +1,10 @@
 using System;
 using _Game.Scripts.Common;
+using _Game.Scripts.Common.Movement;
 using _Game.Scripts.Core.InputModule;
 using Zenject;
 
-namespace _Game.Scripts.Features.Human
+namespace _Game.Scripts.Features.Entity
 {
     public class EntityMovementController: IDisposable, ITickable, IEnableable
     {

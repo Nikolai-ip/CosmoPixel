@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using _Game.Scripts.Common;
 
-namespace _Game.Scripts.Features.Human
+namespace _Game.Scripts.Common
 {
     public interface IEnableableComponentsContainer
     {

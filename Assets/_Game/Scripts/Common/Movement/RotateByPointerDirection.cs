@@ -2,7 +2,7 @@ using _Game.Scripts.Core.InputModule;
 using UnityEngine;
 using Zenject;
 
-namespace _Game.Scripts.Common
+namespace _Game.Scripts.Common.Movement
 {
     public class RotateByPointerDirection
     {

@@ -4,7 +4,7 @@ using _Game.Scripts.Common.DI;
 using UnityEngine;
 using Zenject;
 
-namespace _Game.Scripts.Features.Human.Installers
+namespace _Game.Scripts.Features.Entity.Installers
 {
     public class EntityInstaller: SubInstaller
     {
