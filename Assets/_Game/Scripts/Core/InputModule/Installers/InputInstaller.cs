@@ -7,8 +7,12 @@ namespace _Game.Scripts.Core.InputModule.Installers
     {
         public override void InstallBindings(DiContainer container)
         {
+            // container
+            //     .BindInterfacesTo<PCInputService>()
+            //     .AsSingle();
+            //
             container
-                .BindInterfacesTo<PCInputService>()
+                .BindInterfacesTo<PCNewInputSystemInputService>()
                 .AsSingle();
             
             container

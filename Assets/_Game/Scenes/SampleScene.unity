@@ -2702,6 +2702,14 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: f7d7c4ea4f36198479acae7228416803, type: 2}
+    - target: {fileID: 4755474073812391839, guid: 6f5904e9abc6a2c44a45af9d32f88fe0, type: 3}
+      propertyPath: _acceleration
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4755474073812391839, guid: 6f5904e9abc6a2c44a45af9d32f88fe0, type: 3}
+      propertyPath: _deceleration
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 6500138132579748948, guid: 6f5904e9abc6a2c44a45af9d32f88fe0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.255

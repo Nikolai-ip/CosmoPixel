@@ -30,4 +30,5 @@ namespace _Game.Scripts.Features.Human.Installers
                 .AsCached();
         }
     }
+
 }
