@@ -1,19 +1,31 @@
+using System.Collections.Generic;
 using _Game.Scripts.Common;
+using UnityEngine;
 using Zenject;
 
 namespace _Game.Scripts.Features.Human
 {
-    public class HumanControllableEntity: IControllableEntity
+    public class HumanControllableEntity: IControllableEntityMono
     {
-        
-        public void StartControl()
+        private List<IEnableable> _enableableComponents;
+        public override void SetComponents(List<IEnableable> enableableComponents)
         {
-            throw new System.NotImplementedException();
+            _enableableComponents = enableableComponents;
+            _enableableComponents ??= new List<IEnableable>();
+        }
+        
+        public override void StartControl()
+        {
+            foreach (var component in _enableableComponents)
+                component.Enable();
+        }
+        public override void StopControl()
+        {
+            foreach (var component in _enableableComponents)
+                component.Disable();
+            
         }
 
-        public void StopControl()
-        {
-            throw new System.NotImplementedException();
-        }
+        public override GameObject EntityGameObject => gameObject;
     }
 }

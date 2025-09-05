@@ -5,32 +5,37 @@ using Zenject;
 
 namespace _Game.Scripts.Features.Human
 {
-    public class HumanController: IDisposable, ITickable
+    public class EntityMovementController: IDisposable, ITickable, IEnableable
     {
         private IInputService _inputService;
         private readonly IMovementController _movementController;
         private readonly IDirectionLookable _playerLookable;
-        
-        public HumanController(IMovementController movementController,IDirectionLookable playerLookable)
+        private bool _enabled;
+        public EntityMovementController(IMovementController movementController, IDirectionLookable playerLookable, IInputService inputService)
         {
             _movementController = movementController;
             _playerLookable = playerLookable;
+            _inputService = inputService;
         }
 
-        public void SetInputService(IInputService service)
+        public void Enable()
         {
-            _inputService = service;
             _inputService.OnMovePressed +=  _playerLookable.LookAt;
+            _enabled = true;
+        }
+        public void Disable()
+        {
+            _inputService.OnMovePressed -=  _playerLookable.LookAt;
+            _enabled = false;
         }
         public void Tick()
         {
-            if (_inputService != null)
+            if (_enabled)
                 _movementController.Move(_inputService.MoveDirection);
         }
         public void Dispose()
         {
-            if (_inputService != null)
-                _inputService.OnMovePressed -=  _playerLookable.LookAt;
+            _inputService.OnMovePressed -=  _playerLookable.LookAt;
         }
     }
 

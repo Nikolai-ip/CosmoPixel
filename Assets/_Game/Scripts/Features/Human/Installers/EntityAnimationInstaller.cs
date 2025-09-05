@@ -5,7 +5,7 @@ using Zenject;
 
 namespace _Game.Scripts.Features.Human.Installers
 {
-    public class HumanAnimationInstaller: SubInstaller
+    public class EntityAnimationInstaller: SubInstaller
     {
         [SerializeField] private Animator _animator;
         public override void InstallBindings(DiContainer container)
@@ -16,10 +16,8 @@ namespace _Game.Scripts.Features.Human.Installers
                 .AsSingle();
             
             container
-                .BindInterfacesTo<PlayerAnimatorController>()
+                .BindInterfacesTo<EntityAnimatorController>()
                 .AsCached();
-            
-            
         }
     }
 }

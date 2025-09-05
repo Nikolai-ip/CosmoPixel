@@ -1,10 +1,9 @@
 using _Game.Scripts.Common.DI;
-using _Game.Scripts.Core.InputModule;
 using Zenject;
 
-namespace _Game.Scripts.Features.Human.Installers
+namespace _Game.Scripts.Core.InputModule.Installers
 {
-    public class PlayerInputInstaller: SubInstaller
+    public class InputInstaller: SubInstaller
     {
         public override void InstallBindings(DiContainer container)
         {
@@ -15,7 +14,7 @@ namespace _Game.Scripts.Features.Human.Installers
             container
                 .Bind<IPointerDirection>()
                 .To<MousePointerDirection>()
-                .AsSingle();
+                .AsSingle();    
         }
     }
 }

@@ -5,10 +5,10 @@ using Zenject;
 
 namespace _Game.Scripts.Features.Human.Installers
 {
-    public class HumanMoveControllersInstaller: SubInstaller
+    public class EntityMoveControllersInstaller: SubInstaller
     {
         [SerializeField] private SmoothMoveController _movementController;
-        [SerializeField] private Transform _player;
+        [SerializeField] private Transform _entity;
         public override void InstallBindings(DiContainer container)
         {
             container
@@ -17,7 +17,7 @@ namespace _Game.Scripts.Features.Human.Installers
                 .AsSingle();
 
             container.Bind<Transform>()
-                .FromInstance(_player)
+                .FromInstance(_entity)
                 .AsSingle();
             
             container
@@ -26,8 +26,8 @@ namespace _Game.Scripts.Features.Human.Installers
                 AsSingle();
             
             container
-                .BindInterfacesAndSelfTo<HumanController>()
-                .AsSingle();
+                .BindInterfacesTo<EntityMovementController>()
+                .AsCached();
         }
     }
 }

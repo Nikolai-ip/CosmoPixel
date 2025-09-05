@@ -5,14 +5,14 @@ using Zenject;
 
 namespace _Game.Scripts.Features.Human.Controllers
 {
-    public class PlayerAnimatorController: IInitializable, IDisposable
+    public class EntityAnimatorController: IInitializable, IDisposable
     {
         private readonly Animator _animator;
         private readonly IMovementController _movementController;
         private static readonly int IsMoving = Animator.StringToHash("IsMoving");
         private const float MOVEMENT_FOR_PLAY_ANIMATION = 0.2f;
         
-        public PlayerAnimatorController(Animator animator, IMovementController movementController)
+        public EntityAnimatorController(Animator animator, IMovementController movementController)
         {
             _animator = animator;
             _movementController = movementController;
