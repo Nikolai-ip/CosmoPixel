@@ -1,4 +1,4 @@
-namespace _Game.Scripts.Common.Events
+namespace _Game.Scripts.Core.Events
 {
     public interface ISignalHandler<in T> where T : ISignal
     {

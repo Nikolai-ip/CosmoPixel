@@ -1,4 +1,4 @@
-using _Game.Scripts.Core.InputModule;
+using _Game.Scripts.InputModule;
 using UnityEngine;
 using Zenject;
 

@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
-using _Game.Scripts.Common.Events;
-using UnityEngine;
 using Zenject;
 
-namespace _Game.Scripts.Common.StateMachine
+namespace _Game.Scripts.Core.StateMachine
 {
     public class UpdateableStateMachine: StateMachineBase, ITickable
     {

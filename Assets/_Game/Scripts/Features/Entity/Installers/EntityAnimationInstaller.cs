@@ -1,4 +1,4 @@
-using _Game.Scripts.Common.DI;
+using _Game.Scripts.Core.DI;
 using UnityEngine;
 using Zenject;
 

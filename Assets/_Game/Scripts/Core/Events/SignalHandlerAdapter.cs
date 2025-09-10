@@ -1,4 +1,4 @@
-namespace _Game.Scripts.Common.Events
+namespace _Game.Scripts.Core.Events
 {
     public class SignalHandlerAdapter<T>: ISignalHandler<ISignal> where T : ISignal
     {

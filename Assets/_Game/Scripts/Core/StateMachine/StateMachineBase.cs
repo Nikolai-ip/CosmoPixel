@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
-using _Game.Scripts.Common.Events;
-using UnityEngine;
 using Zenject;
 
-namespace _Game.Scripts.Common.StateMachine
+namespace _Game.Scripts.Core.StateMachine
 {
     public class StateMachineBase: IInitializable
     {
@@ -25,14 +23,12 @@ namespace _Game.Scripts.Common.StateMachine
         {
             var state = ChangeState<TState>();
             state.Enter();
-            Debug.Log($"Enter to state {state.GetType().Name}");
         }
 
         public virtual void Enter<TState, TPayLoad>(TPayLoad payLoad) where TState: class, IPayLoadedState<TPayLoad>
         {
             var state = ChangeState<TState>();
             state.Enter(payLoad);
-            Debug.Log($"Enter to state {state.GetType().Name}");
         }
         private TState ChangeState<TState>() where TState : class, IExitableState
         {

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using _Game.Scripts.Common;
-using _Game.Scripts.Common.DI;
+using _Game.Scripts.Core.DI;
 using UnityEngine;
 using Zenject;
 

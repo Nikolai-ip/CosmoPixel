@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace _Game.Scripts.Features.Entity
 {
-    public class EntityComponentsController: IControllableEntityMono
+    public class EntityComponentsToggler: IControllableEntityMono
     {
         private List<IEnableable> _enableableComponents;
         public override void SetComponents(List<IEnableable> enableableComponents)

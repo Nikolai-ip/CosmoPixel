@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using _Game.Scripts.Common;
-using _Game.Scripts.Common.DI;
+using _Game.Scripts.Core.DI;
 using _Game.Scripts.Features.Player.Transition;
 using UnityEngine;
 using Zenject;
 
-namespace _Game.Scripts.Features.Player
+namespace _Game.Scripts.Features.Player.Installers
 {
     public class PlayerInstaller: SubInstaller
     {
@@ -14,9 +14,18 @@ namespace _Game.Scripts.Features.Player
         public override void InstallBindings(DiContainer container)
         {
             container
-                .BindInterfacesAndSelfTo<TransitionController>()
+                .Bind<IEntityBufferSorter>()
+                .To<ByDistanceEntityContainerSorter>()
+                .AsSingle();
+            
+            container
+                .BindInterfacesTo<EntityContainer>()
                 .AsSingle()
-                .WithArguments(new List<IControllableEntity>() { _defaultEntity });        
+                .WithArguments(new List<IControllableEntity>() { _defaultEntity });
+            
+            container
+                .BindInterfacesAndSelfTo<TransitionController>()
+                .AsSingle();
         }
     }
 }

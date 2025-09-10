@@ -1,6 +1,6 @@
 using Zenject;
 
-namespace _Game.Scripts.Common.DI
+namespace _Game.Scripts.Core.DI
 {
     public class AutoBundleInstaller: MonoInstaller
     {

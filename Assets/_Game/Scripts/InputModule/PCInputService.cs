@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
 
-namespace _Game.Scripts.Core.InputModule
+namespace _Game.Scripts.InputModule
 {
 
     [Obsolete]

@@ -1,6 +1,4 @@
-using _Game.Scripts.Common.Events;
-
-namespace _Game.Scripts.Common.StateMachine
+namespace _Game.Scripts.Core.StateMachine
 {
     public interface IUpdatableState : IState
     {

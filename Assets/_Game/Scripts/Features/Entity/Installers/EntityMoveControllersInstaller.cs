@@ -1,5 +1,5 @@
-using _Game.Scripts.Common.DI;
 using _Game.Scripts.Common.Movement;
+using _Game.Scripts.Core.DI;
 using UnityEngine;
 using Zenject;
 
@@ -24,10 +24,6 @@ namespace _Game.Scripts.Features.Entity.Installers
                 .Bind<IDirectionLookable>()
                 .To<HorizontalFlipper>().
                 AsSingle();
-            
-            container
-                .BindInterfacesTo<EntityMovementController>()
-                .AsCached();
         }
     }
 

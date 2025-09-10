@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace _Game.Scripts.Core.InputModule
+namespace _Game.Scripts.InputModule
 {
     public interface IInputService
     {

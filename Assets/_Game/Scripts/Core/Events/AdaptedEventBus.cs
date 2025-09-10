@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace _Game.Scripts.Common.Events
+namespace _Game.Scripts.Core.Events
 {
     public class AdaptedEventBus: IEventBus
     {

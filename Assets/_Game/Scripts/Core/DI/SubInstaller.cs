@@ -1,7 +1,7 @@
 using UnityEngine;
 using Zenject;
 
-namespace _Game.Scripts.Common.DI
+namespace _Game.Scripts.Core.DI
 {
     public abstract class SubInstaller: MonoBehaviour
     {

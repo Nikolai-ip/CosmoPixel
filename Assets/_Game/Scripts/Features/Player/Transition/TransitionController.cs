@@ -1,7 +1,6 @@
 using System;
-using System.Collections.Generic;
 using _Game.Scripts.Common;
-using _Game.Scripts.Core.InputModule;
+using _Game.Scripts.InputModule;
 using _Game.Scripts.Utilities;
 using UnityEngine;
 using Zenject;
@@ -11,12 +10,17 @@ namespace _Game.Scripts.Features.Player.Transition
     public class TransitionController: IInitializable, IDisposable
     {
         private readonly IInputService _inputService;
-        private ITriggerEventInvoker _triggerEventInvoker;
-        private readonly List<IControllableEntity> _entityBuffer;
+        private readonly IEntityContainer _entityContainer;
+        private readonly IEntityBuffer _entityBuffer;
+        private readonly IEntityBufferSorter  _entityBufferSorter;
         private IControllableEntity _currentEntity;
-        public TransitionController(IInputService inputService, List<IControllableEntity> entityBuffer)
+        private ITriggerEventInvoker _triggerEventInvoker;
+
+        public TransitionController(IInputService inputService, IEntityContainer entityContainer, IEntityBuffer entityBuffer, IEntityBufferSorter entityBufferSorter)
         {
             _inputService = inputService;
+            _entityContainer = entityContainer;
+            _entityBufferSorter = entityBufferSorter;
             _entityBuffer = entityBuffer;
         }
         
@@ -28,10 +32,12 @@ namespace _Game.Scripts.Features.Player.Transition
 
         private void TrySwitchFirstEntity()
         {
-            if (_entityBuffer.Count > 0)
+            _entityBufferSorter.Sort(_entityBuffer, _currentEntity);
+            if (_entityContainer.TryGetEntity(out var entity))
             {
-                SetEntity(_entityBuffer[0]);
+                SetEntity(entity);
                 ResetTrigger();
+                
             }
         }
 
@@ -39,6 +45,7 @@ namespace _Game.Scripts.Features.Player.Transition
         {
             _currentEntity?.StopControl();
             _currentEntity = entity;
+            Debug.Log($"Switch entity on {entity.EntityGameObject.name}");
             _currentEntity.StartControl();
         }
 
@@ -52,25 +59,23 @@ namespace _Game.Scripts.Features.Player.Transition
                 _triggerEventInvoker.OnTriggerExit += OnTriggerExit;
             }
             else
-            {
                 Debug.LogError($"{_currentEntity.EntityGameObject.name} has no trigger event invoker");
-            }
+            
         }
-
-        private void OnTriggerExit(Collider2D col)
-        {
-            if (ItIsEntityAndBufferDoesntContain(col, out IControllableEntity entity))
-                _entityBuffer.Add(entity);
-        }
-
-        private bool ItIsEntityAndBufferDoesntContain(Collider2D col, out IControllableEntity entity) =>
-            col.TryGetComponent(out entity) && !_entityBuffer.Contains(entity);
 
         private void OnTriggerEnter(Collider2D col)
         {
-            if (ItIsEntityAndBufferDoesntContain(col, out IControllableEntity entity))
-                _entityBuffer.Remove(entity);
+            if (col.TryGetComponent(out IControllableEntity entity))
+                _entityContainer.TryAddEntity(entity);
+
         }
+        private void OnTriggerExit(Collider2D col)
+        {
+            if (col.TryGetComponent(out IControllableEntity entity))
+                _entityContainer.TryRemove(entity);
+        }
+
+
 
         public void Dispose()
         {

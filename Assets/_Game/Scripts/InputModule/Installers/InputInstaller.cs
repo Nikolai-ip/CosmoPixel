@@ -1,8 +1,8 @@
-using _Game.Scripts.Common.DI;
-using _Game.Scripts.Common.Events;
+using _Game.Scripts.Core.DI;
+using _Game.Scripts.Core.Events;
 using Zenject;
 
-namespace _Game.Scripts.Core.InputModule.Installers
+namespace _Game.Scripts.InputModule.Installers
 {
     public class InputInstaller: SubInstaller
     {
@@ -11,16 +11,6 @@ namespace _Game.Scripts.Core.InputModule.Installers
             container
                 .BindInterfacesTo<PCNewInputSystemInputService>()
                 .AsSingle();
-            
-            container
-                .BindInterfacesAndSelfTo<InputSignalsInvoker>()
-                .AsSingle();
-            
-            container
-                .Bind<IEventBus>()
-                .To<AdaptedEventBus>()
-                .AsSingle()
-                .WithArguments(new EventBusLocal());
             
             container
                 .Bind<IPointerDirection>()

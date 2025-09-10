@@ -13,11 +13,17 @@ namespace _Game.Scripts.Common.Movement
         [SerializeField] private float _deceleration = 15f;
         [SerializeField] private float _decelerationThreshold = 0.1f;
         [SerializeField] private float _velPower = 1.5f;
+        private Vector2 _moveInput;
         public event Action<Vector2> OnMove;
-        
+
         public void Move(Vector2 moveInput)
         {
-            Vector2 targetVelocity = moveInput * _speed;
+            _moveInput = moveInput;
+        }
+
+        private void FixedUpdate()
+        {
+            Vector2 targetVelocity = _moveInput * _speed;
             Vector2 velocityDelta = targetVelocity - _rb.linearVelocity;
 
             float accelRate = (velocityDelta.magnitude > _decelerationThreshold) ? _acceleration : _deceleration;
@@ -34,7 +40,6 @@ namespace _Game.Scripts.Common.Movement
             _rb.AddForce(poweredDiff);
             OnMove?.Invoke(_rb.linearVelocity);
         }
-
     }
 
 }

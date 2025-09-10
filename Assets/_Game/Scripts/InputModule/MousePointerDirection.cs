@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Game.Scripts.Core.InputModule
+namespace _Game.Scripts.InputModule
 {
     public class MousePointerDirection : IPointerDirection
     {
