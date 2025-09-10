@@ -7,4 +7,4 @@ The main core mechanic is transformation in different entities. It is an interes
 ###How it is works?
 There is a global, ghostly Player entity. This is like a player moving between entities when switching. We just enable or disable some components in an entity (instance InputSignalInvoker).
 Player has an EntityBuffer where all nearby entities are stored. Each entity has a **StateMachine**, and states have an input **event bus** that fires input events.
-![Scheme](ReadmeData/Scheme)
+![Scheme](ReadmeData/Scheme.png)
