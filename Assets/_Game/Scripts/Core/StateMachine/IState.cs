@@ -1,3 +1,5 @@
+using _Game.Scripts.Common.Events;
+
 namespace _Game.Scripts.Common.StateMachine
 {
     public interface IUpdatableState : IState
@@ -16,5 +18,6 @@ namespace _Game.Scripts.Common.StateMachine
     public interface IExitableState
     {
         void Exit();
+        void SetStateMachine(StateMachineBase sm);
     }
 }

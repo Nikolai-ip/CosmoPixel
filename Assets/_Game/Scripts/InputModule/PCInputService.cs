@@ -1,16 +1,19 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Zenject;
 
 namespace _Game.Scripts.Core.InputModule
 {
 
+    [Obsolete]
     public class PCInputService : IInputService, ITickable
     {
         public Vector2 MoveDirection =>
             new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
 
         public event Action OnSwitchEntityPressed;
+        public event Action<Vector2, InputActionPhase> OnMove;
 
         public event Action<Vector2> OnMovePressed;
         public event Action<Vector2> OnMoveUnpressed;   
